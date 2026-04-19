@@ -1,0 +1,182 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Threads::Threads::@691b517da5fa0f694cd4",
+					"jsonFile" : "target-Threads__Threads-Debug-9b128f316dbfa9b42c45.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : "external/glfw",
+					"childIndexes" : 
+					[
+						2,
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-external.glfw-Debug-f7247a3ea815b099aef0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "external/glfw",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "external/glfw/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-external.glfw.src-Debug-6727a06ab6e5a8d0d84c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "external/glfw/src",
+					"targetIndexes" : 
+					[
+						2,
+						4
+					]
+				},
+				{
+					"build" : "external/glfw/docs",
+					"jsonFile" : "directory-external.glfw.docs-Debug-cbccfd5b0161afb29b34.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "external/glfw/docs"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "OpenGLApp",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "OpenGLApp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-OpenGLApp-Debug-e9dce13d2afd2cb05bd6.json",
+					"name" : "OpenGLApp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "glad::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-glad-Debug-b489a7d1bdc69a15537e.json",
+					"name" : "glad",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "glfw::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-glfw-Debug-d0b38eb156543be1231f.json",
+					"name" : "glfw",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@691b517da5fa0f694cd4",
+					"jsonFile" : "target-uninstall-Debug-ebd96e28af3abdd205e8.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "update_mappings::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-update_mappings-Debug-5991624e5f8fbfe9500c.json",
+					"name" : "update_mappings",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/soham/Documents/graphics/openglstuff/out/build/x64-Debug",
+		"source" : "C:/Users/soham/Documents/graphics/openglstuff"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
