@@ -184,7 +184,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "rectangle.cpp",
+			"path" : "concentric_triangles.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <vector>
+#include <cmath>
 
 // Vertex Shader
 const char* vertexShaderSource = R"(
@@ -16,22 +18,28 @@ void main()
 const char* fragmentShaderSource = R"(
 #version 330 core
 out vec4 FragColor;
+
+uniform vec4 ourColor;
+
 void main()
 {
-    FragColor = vec4(1.0, 0.5, 0.2, 1.0);
+    FragColor = ourColor;
 }
 )";
+
 
 // Resize callback
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
+
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
+
 int main()
 {
     // Initialize GLFW
@@ -69,28 +77,25 @@ int main()
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // Triangle vertices
-    //float vertices[] = {
-    //    -0.5f, -0.5f, 0.0f,
-    //     0.5f, -0.5f, 0.0f,
-    //     0.0f,  0.5f, 0.0f
-    //};
-    // rectamg;e
-    float vertices[] = {
-        0.5f, 0.5f, 0.0f, // top right
-        0.5f, -0.5f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, // bottom left
-        -0.5f, 0.5f, 0.0f // top left
-    };
-    unsigned int indices[] = { // note that we start from 0!
-    0, 1, 3, // first triangle
-    1, 2, 3 // second triangle
-    };
+    std::vector<float> vertices;
 
-	// VAO + VBO and EBO for rectangle
-    unsigned int EBO;
-    glGenBuffers(1, &EBO);
+    int numTriangles = 7;
+    float side = 1.6f;
 
-    
+    float spacing =
+        side / (1.0f + (numTriangles - 1) * 2.0f * sqrt(3.0f));
+
+    for (int i = 0; i < numTriangles; i++)
+    {
+        float h = side * sqrt(3.0f) / 2.0f;
+
+        vertices.push_back(-side / 2); vertices.push_back(-h / 3); vertices.push_back(0);
+        vertices.push_back(side / 2);  vertices.push_back(-h / 3); vertices.push_back(0);
+        vertices.push_back(0);         vertices.push_back(2 * h / 3); vertices.push_back(0);
+
+        side -= 2.0f * sqrt(3.0f) * spacing;
+    }
+
     unsigned int VBO;
     glGenBuffers(1, &VBO);
 
@@ -99,11 +104,12 @@ int main()
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
-        GL_STATIC_DRAW);
+    glBufferData(
+        GL_ARRAY_BUFFER,
+        vertices.size() * sizeof(float),
+        vertices.data(),
+        GL_STATIC_DRAW
+    );
 
     // Vertex attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -129,22 +135,39 @@ int main()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    //color testuing
+    int colorLoc = glGetUniformLocation(shaderProgram, "ourColor");
+
+    float colors[7][4] = {
+        {1,0,0,1},
+        {1,0.5,0,1},
+        {1,1,0,1},
+        {0,1,0,1},
+        {0,0,1,1},
+        {0.29,0,0.51,1},
+        {0.56,0,1,1}
+    };
+
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
         // inpt
-		processInput(window);
+        processInput(window);
 
         // rendering commands here
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
         glUseProgram(shaderProgram);
-        //glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 3);
-        // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //WIREFRAME MODE
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(VAO);
+
+        for (int i = 0; i < 7; i++)
+        {
+            glUniform4fv(colorLoc, 1, colors[i]);
+            glDrawArrays(GL_TRIANGLES, i * 3, 3);
+        }
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window);
@@ -154,7 +177,7 @@ int main()
     // Cleanup
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+
     glfwTerminate();
     return 0;
 }
-

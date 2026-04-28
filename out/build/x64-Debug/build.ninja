@@ -88,7 +88,7 @@ build glad.lib: C_STATIC_LIBRARY_LINKER__glad_Debug CMakeFiles\glad.dir\external
 
 build cmake_object_order_depends_target_OpenGLApp: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
 
-build CMakeFiles\OpenGLApp.dir\rectangle.cpp.obj: CXX_COMPILER__OpenGLApp_unscanned_Debug C$:\Users\soham\Documents\graphics\openglstuff\rectangle.cpp || cmake_object_order_depends_target_OpenGLApp
+build CMakeFiles\OpenGLApp.dir\concentric_triangles.cpp.obj: CXX_COMPILER__OpenGLApp_unscanned_Debug C$:\Users\soham\Documents\graphics\openglstuff\concentric_triangles.cpp || cmake_object_order_depends_target_OpenGLApp
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
   INCLUDES = -IC:\Users\soham\Documents\graphics\openglstuff\external\glad\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glfw\include
@@ -106,7 +106,7 @@ build CMakeFiles\OpenGLApp.dir\rectangle.cpp.obj: CXX_COMPILER__OpenGLApp_unscan
 #############################################
 # Link the executable OpenGLApp.exe
 
-build OpenGLApp.exe: CXX_EXECUTABLE_LINKER__OpenGLApp_Debug CMakeFiles\OpenGLApp.dir\rectangle.cpp.obj | external\glfw\src\glfw3.lib glad.lib || external\glfw\src\glfw3.lib glad.lib
+build OpenGLApp.exe: CXX_EXECUTABLE_LINKER__OpenGLApp_Debug CMakeFiles\OpenGLApp.dir\concentric_triangles.cpp.obj | external\glfw\src\glfw3.lib glad.lib || external\glfw\src\glfw3.lib glad.lib
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
