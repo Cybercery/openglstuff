@@ -11,7 +11,7 @@ add_library(glad external/glad/src/glad.c)
 target_include_directories(glad PUBLIC external/glad/include)
 
 # Executable
-add_executable(OpenGLApp main.cpp)
+add_executable(OpenGLApp "rectangle.cpp")
 
 # Include dirs
 target_include_directories(OpenGLApp PRIVATE
