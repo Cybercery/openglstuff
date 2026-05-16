@@ -12,6 +12,7 @@ target_include_directories(glad PUBLIC external/glad/include)
 
 # Executable
 add_executable(OpenGLApp "concentric_triangles.cpp" )
+add_executable(OpenGLApp "balls.cpp" )
 
 # Include dirs
 target_include_directories(OpenGLApp PRIVATE
