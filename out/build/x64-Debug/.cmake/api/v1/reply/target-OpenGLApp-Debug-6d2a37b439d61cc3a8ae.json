@@ -35,33 +35,17 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 23,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 17,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
 	},
-	"codemodelVersion" : 
-	{
-		"major" : 2,
-		"minor" : 9
-	},
-	"compileDependencies" : 
-	[
-		{
-			"backtrace" : 2,
-			"id" : "glfw::@ca12bac854c2ac6b2230"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "glad::@6890427a1f51a3e7e1df"
-		}
-	],
 	"compileGroups" : 
 	[
 		{
@@ -75,11 +59,11 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/soham/Documents/graphics/openglstuff/external/glad/include"
+					"path" : "C:/Users/soham/Projects/openglstuff/external/glad/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/soham/Documents/graphics/openglstuff/external/glfw/include"
+					"path" : "C:/Users/soham/Projects/openglstuff/external/glfw/include"
 				}
 			],
 			"language" : "CXX",
@@ -118,11 +102,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "/subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
@@ -147,21 +127,6 @@
 		],
 		"language" : "CXX"
 	},
-	"linkLibraries" : 
-	[
-		{
-			"backtrace" : 2,
-			"id" : "glfw::@ca12bac854c2ac6b2230"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "glad::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
-			"fragment" : "opengl32"
-		}
-	],
 	"name" : "OpenGLApp",
 	"nameOnDisk" : "OpenGLApp.exe",
 	"paths" : 
