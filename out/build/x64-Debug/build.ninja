@@ -80,45 +80,86 @@ build glad.lib: C_STATIC_LIBRARY_LINKER__glad_Debug CMakeFiles\glad.dir\external
   TARGET_SUPPORT_DIR = CMakeFiles\glad.dir
 
 # =============================================================================
-# Object build statements for EXECUTABLE target OpenGLApp
+# Object build statements for EXECUTABLE target concentric_triangles
 
 
 #############################################
-# Order-only phony target for OpenGLApp
+# Order-only phony target for concentric_triangles
 
-build cmake_object_order_depends_target_OpenGLApp: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
+build cmake_object_order_depends_target_concentric_triangles: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
 
-build CMakeFiles\OpenGLApp.dir\concentric_triangles.cpp.obj: CXX_COMPILER__OpenGLApp_unscanned_Debug C$:\Users\soham\Documents\graphics\openglstuff\concentric_triangles.cpp || cmake_object_order_depends_target_OpenGLApp
+build CMakeFiles\concentric_triangles.dir\concentric_triangles.cpp.obj: CXX_COMPILER__concentric_triangles_unscanned_Debug C$:\Users\soham\Documents\graphics\openglstuff\concentric_triangles.cpp || cmake_object_order_depends_target_concentric_triangles
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Users\soham\Documents\graphics\openglstuff\external\glad\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glfw\include
-  OBJECT_DIR = CMakeFiles\OpenGLApp.dir
-  OBJECT_FILE_DIR = CMakeFiles\OpenGLApp.dir
-  TARGET_COMPILE_PDB = CMakeFiles\OpenGLApp.dir\
-  TARGET_PDB = OpenGLApp.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\OpenGLApp.dir
+  INCLUDES = -IC:\Users\soham\Documents\graphics\openglstuff\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glad\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glfw\include
+  OBJECT_DIR = CMakeFiles\concentric_triangles.dir
+  OBJECT_FILE_DIR = CMakeFiles\concentric_triangles.dir
+  TARGET_COMPILE_PDB = CMakeFiles\concentric_triangles.dir\
+  TARGET_PDB = concentric_triangles.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\concentric_triangles.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target OpenGLApp
+# Link build statements for EXECUTABLE target concentric_triangles
 
 
 #############################################
-# Link the executable OpenGLApp.exe
+# Link the executable concentric_triangles.exe
 
-build OpenGLApp.exe: CXX_EXECUTABLE_LINKER__OpenGLApp_Debug CMakeFiles\OpenGLApp.dir\concentric_triangles.cpp.obj | external\glfw\src\glfw3.lib glad.lib || external\glfw\src\glfw3.lib glad.lib
+build concentric_triangles.exe: CXX_EXECUTABLE_LINKER__concentric_triangles_Debug CMakeFiles\concentric_triangles.dir\concentric_triangles.cpp.obj | external\glfw\src\glfw3.lib glad.lib || external\glfw\src\glfw3.lib glad.lib
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = external\glfw\src\glfw3.lib  glad.lib  opengl32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\OpenGLApp.dir
+  OBJECT_DIR = CMakeFiles\concentric_triangles.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\OpenGLApp.dir\
-  TARGET_FILE = OpenGLApp.exe
-  TARGET_IMPLIB = OpenGLApp.lib
-  TARGET_PDB = OpenGLApp.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\OpenGLApp.dir
+  TARGET_COMPILE_PDB = CMakeFiles\concentric_triangles.dir\
+  TARGET_FILE = concentric_triangles.exe
+  TARGET_IMPLIB = concentric_triangles.lib
+  TARGET_PDB = concentric_triangles.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\concentric_triangles.dir
+
+# =============================================================================
+# Object build statements for EXECUTABLE target balls
+
+
+#############################################
+# Order-only phony target for balls
+
+build cmake_object_order_depends_target_balls: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
+
+build CMakeFiles\balls.dir\balls.cpp.obj: CXX_COMPILER__balls_unscanned_Debug C$:\Users\soham\Documents\graphics\openglstuff\balls.cpp || cmake_object_order_depends_target_balls
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Users\soham\Documents\graphics\openglstuff\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glad\include -IC:\Users\soham\Documents\graphics\openglstuff\external\glfw\include
+  OBJECT_DIR = CMakeFiles\balls.dir
+  OBJECT_FILE_DIR = CMakeFiles\balls.dir
+  TARGET_COMPILE_PDB = CMakeFiles\balls.dir\
+  TARGET_PDB = balls.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\balls.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target balls
+
+
+#############################################
+# Link the executable balls.exe
+
+build balls.exe: CXX_EXECUTABLE_LINKER__balls_Debug CMakeFiles\balls.dir\balls.cpp.obj | external\glfw\src\glfw3.lib glad.lib || external\glfw\src\glfw3.lib glad.lib
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = external\glfw\src\glfw3.lib  glad.lib  opengl32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = CMakeFiles\balls.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\balls.dir\
+  TARGET_FILE = balls.exe
+  TARGET_IMPLIB = balls.lib
+  TARGET_PDB = balls.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\balls.dir
 
 
 #############################################
@@ -637,7 +678,9 @@ build external\glfw\docs\install\local: phony external\glfw\docs\CMakeFiles\inst
 # =============================================================================
 # Target aliases.
 
-build OpenGLApp: phony OpenGLApp.exe
+build balls: phony balls.exe
+
+build concentric_triangles: phony concentric_triangles.exe
 
 build glad: phony glad.lib
 
@@ -657,7 +700,7 @@ build update_mappings: phony external\glfw\src\update_mappings
 #############################################
 # Folder: C:/Users/soham/Documents/graphics/openglstuff/out/build/x64-Debug
 
-build all: phony glad.lib OpenGLApp.exe external\glfw\all
+build all: phony glad.lib concentric_triangles.exe balls.exe external\glfw\all
 
 # =============================================================================
 

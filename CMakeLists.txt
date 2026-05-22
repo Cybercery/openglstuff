@@ -7,18 +7,26 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(external/glfw)
 
 # GLAD
-add_library(glad external/glad/src/glad.c )
+add_library(glad external/glad/src/glad.c)
 target_include_directories(glad PUBLIC external/glad/include)
 
-# Executable
-add_executable(OpenGLApp "concentric_triangles.cpp" )
-# add_executable(OpenGLApp "balls.cpp" )
+# Executables
+add_executable(concentric_triangles concentric_triangles.cpp)
+add_executable(balls balls.cpp)
 
-# Include dirs
-target_include_directories(OpenGLApp PRIVATE
+# Include directories
+target_include_directories(concentric_triangles PRIVATE
+    include
     external/glad/include
     external/glfw/include
 )
 
-# Link everything
-target_link_libraries(OpenGLApp glfw glad opengl32)
+target_include_directories(balls PRIVATE
+    include
+    external/glad/include
+    external/glfw/include
+)
+
+# Link libraries
+target_link_libraries(concentric_triangles glfw glad opengl32)
+target_link_libraries(balls glfw glad opengl32)

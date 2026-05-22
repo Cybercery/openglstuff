@@ -1,11 +1,41 @@
+# Visual Studio
 .vs/
 *.vcxproj.user
+*.VC.db
+*.opendb
+*.suo
+*.ipch
+
+# Logs / temp
 *.log
+*.tlog
+
+# Compiled objects/binaries
 *.obj
 *.exe
 *.pdb
-*.ipch
-*.tlog
+*.ilk
+*.dll
+*.lib
+
+# Build folders
 Debug/
 Release/
 x64/
+x86/
+out/
+build/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+
+# Ninja
+.ninja_deps
+.ninja_log
+
+# Generated solutions/projects
+*.sln
+*.vcxproj
