@@ -46,6 +46,11 @@
 			}
 		]
 	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
 	"compileGroups" : 
 	[
 		{
@@ -59,7 +64,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/soham/Projects/openglstuff/external/glad/include"
+					"path" : "C:/Users/soham/Documents/graphics/openglstuff/external/glad/include"
 				}
 			],
 			"language" : "C",

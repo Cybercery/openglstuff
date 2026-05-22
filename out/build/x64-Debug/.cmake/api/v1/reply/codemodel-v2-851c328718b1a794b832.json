@@ -2,6 +2,16 @@
 	"configurations" : 
 	[
 		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Threads::Threads::@691b517da5fa0f694cd4",
+					"jsonFile" : "target-Threads__Threads-Debug-9b128f316dbfa9b42c45.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
 			"directories" : 
 			[
 				{
@@ -11,7 +21,7 @@
 						1
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -25,6 +35,10 @@
 					]
 				},
 				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
 					"build" : "external/glfw",
 					"childIndexes" : 
 					[
@@ -32,7 +46,7 @@
 						3
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-external.glfw-Debug-6541e3966b308cca2022.json",
+					"jsonFile" : "directory-external.glfw-Debug-f7247a3ea815b099aef0.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -48,7 +62,7 @@
 				{
 					"build" : "external/glfw/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-external.glfw.src-Debug-04b070dd1a1c192aaac1.json",
+					"jsonFile" : "directory-external.glfw.src-Debug-6727a06ab6e5a8d0d84c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -64,7 +78,7 @@
 				},
 				{
 					"build" : "external/glfw/docs",
-					"jsonFile" : "directory-external.glfw.docs-Debug-3599a25893434c91c723.json",
+					"jsonFile" : "directory-external.glfw.docs-Debug-cbccfd5b0161afb29b34.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -94,6 +108,10 @@
 					]
 				},
 				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
 					"directoryIndexes" : 
 					[
 						1,
@@ -115,35 +133,35 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "OpenGLApp::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-OpenGLApp-Debug-6d2a37b439d61cc3a8ae.json",
+					"jsonFile" : "target-OpenGLApp-Debug-e80ab1bcb997eb6209db.json",
 					"name" : "OpenGLApp",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "glad::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-glad-Debug-d9adfd2e91dd7bd4eb44.json",
+					"jsonFile" : "target-glad-Debug-b489a7d1bdc69a15537e.json",
 					"name" : "glad",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "glfw::@ca12bac854c2ac6b2230",
-					"jsonFile" : "target-glfw-Debug-1c432d46fdceaf4d790f.json",
+					"jsonFile" : "target-glfw-Debug-d0b38eb156543be1231f.json",
 					"name" : "glfw",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "uninstall::@691b517da5fa0f694cd4",
-					"jsonFile" : "target-uninstall-Debug-36af8254ac489dfbdab8.json",
+					"jsonFile" : "target-uninstall-Debug-ebd96e28af3abdd205e8.json",
 					"name" : "uninstall",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "update_mappings::@ca12bac854c2ac6b2230",
-					"jsonFile" : "target-update_mappings-Debug-5f7b1ea14553ed12df86.json",
+					"jsonFile" : "target-update_mappings-Debug-5991624e5f8fbfe9500c.json",
 					"name" : "update_mappings",
 					"projectIndex" : 1
 				}
@@ -153,12 +171,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/soham/Projects/openglstuff/out/build/x64-Debug",
-		"source" : "C:/Users/soham/Projects/openglstuff"
+		"build" : "C:/Users/soham/Documents/graphics/openglstuff/out/build/x64-Debug",
+		"source" : "C:/Users/soham/Documents/graphics/openglstuff"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 8
+		"minor" : 9
 	}
 }
