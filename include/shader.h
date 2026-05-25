@@ -8,6 +8,8 @@
 #include <sstream>
 #include <iostream>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 class Shader
 {
 public:
@@ -35,8 +37,8 @@ public:
         vertexCode = vShaderStream.str();
         fragmentCode = fShaderStream.str();
 
-        std::cout << vertexCode << std::endl;
-        std::cout << fragmentCode << std::endl;
+        // std::cout << vertexCode << std::endl;
+        // std::cout << fragmentCode << std::endl;
 
         const char* vShaderCode = vertexCode.c_str();
         const char* fShaderCode = fragmentCode.c_str();
@@ -78,6 +80,15 @@ public:
     void setFloat(const std::string& name, float value) const
     {
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+    }
+    void setMat4(const std::string& name, const glm::mat4& mat) const
+    {
+        glUniformMatrix4fv(
+            glGetUniformLocation(ID, name.c_str()),
+            1,
+            GL_FALSE,
+            glm::value_ptr(mat)
+        );
     }
 };
 
