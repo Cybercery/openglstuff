@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/soham/Projects/openglstuff/external/glfw/src
+# Install script for directory: C:/Users/soham/Documents/graphics/openglstuff/external/glfw/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/soham/Projects/openglstuff/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/soham/Documents/graphics/openglstuff/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,12 +33,12 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/soham/Projects/openglstuff/out/build/x64-Debug/external/glfw/src/glfw3.lib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/soham/Documents/graphics/openglstuff/out/build/x64-Debug/external/glfw/src/glfw3.lib")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/soham/Projects/openglstuff/out/build/x64-Debug/external/glfw/src/install_local_manifest.txt"
+  file(WRITE "C:/Users/soham/Documents/graphics/openglstuff/out/build/x64-Debug/external/glfw/src/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
