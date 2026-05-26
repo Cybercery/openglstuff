@@ -7,12 +7,12 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(external/glfw)
 
 # GLAD
-add_library(glad external/glad/src/glad.c "include/stb_image.h")
+add_library(glad external/glad/src/glad.c "include/stb_image.h" "include/camera.h")
 target_include_directories(glad PUBLIC external/glad/include)
 
 # Executables
-add_executable(concentric_triangles concentric_triangles.cpp "include/stb_image.h")
-add_executable(balls balls.cpp "include/stb_image.h")
+add_executable(concentric_triangles concentric_triangles.cpp "include/stb_image.h" "include/camera.h")
+add_executable(balls balls.cpp "include/stb_image.h" "include/camera.h")
 
 # Include directories
 target_include_directories(concentric_triangles PRIVATE

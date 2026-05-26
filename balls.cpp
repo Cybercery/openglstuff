@@ -6,18 +6,28 @@
 #include "shader.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#include "camera.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
-
-
 float mixValue = 0.2f;
 
-// view
-glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+// camera
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX = SCR_WIDTH / 2.0f;
+float lastY = SCR_HEIGHT / 2.0f;
+bool firstMouse = true;
+
+// for delta calculation
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
 
 // Resize callback
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -47,41 +57,46 @@ void processInput(GLFWwindow* window)
             mixValue = 0.0f;
         std::cout << "Mix value: " << mixValue << std::endl;
     }
-    // trying moving camera
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    // camera controls
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+}
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    if (firstMouse)
     {
-        // move camera forward
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.1f));
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
     }
-     if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    {
-        // move camera backward
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -0.1f));
-    }
-     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    {
-        // move camera left
-        view = glm::translate(view, glm::vec3(0.1f, 0.0f, 0.0f));
-    }
-     if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    {
-        // move camera right
-        view = glm::translate(view, glm::vec3(-0.1f, 0.0f, 0.0f));
-    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
 int main()
 {
- //   glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
-	//glm::mat4 trans = glm::mat4(1.0f);
- //   trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
- //   trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
-	//vec = trans * vec;
-	//std::cout << vec.x << " " << vec.y << " " << vec.z << std::endl;
-
-
-
-
     // GLFW init
     glfwInit();
 
@@ -93,6 +108,13 @@ int main()
         glfwCreateWindow(800, 600, "Balls", NULL, NULL);
 
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+
+    // capture mouse
+
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // GLAD
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -100,6 +122,9 @@ int main()
     glViewport(0, 0, 800, 600);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    // z depth
+    glEnable(GL_DEPTH_TEST);
 
     // Shader
     Shader shader(
@@ -208,29 +233,11 @@ int main()
 
     stbi_set_flip_vertically_on_load(true);
 
-    unsigned char* data =
-        stbi_load(
-            "../../../assets/brick.jpg",
-            &width,
-            &height,
-            &nrChannels,
-            0
-        );
+    unsigned char* data = stbi_load("../../../assets/brick.jpg", &width, &height, &nrChannels, 0);
 
     if (data)
     {
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGB,
-            width,
-            height,
-            0,
-            GL_RGB,
-            GL_UNSIGNED_BYTE,
-            data
-        );
-
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else
@@ -250,29 +257,11 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    unsigned char* data2 =
-        stbi_load(
-            "../../../assets/awesomeface.png",
-            &width,
-            &height,
-            &nrChannels,
-            0
-        );
+    unsigned char* data2 =  stbi_load("../../../assets/awesomeface.png", &width, &height,  &nrChannels, 0);
 
     if (data2)
     {
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGBA,
-            width,
-            height,
-            0,
-            GL_RGBA,
-            GL_UNSIGNED_BYTE,
-            data2
-        );
-
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2 );
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else
@@ -297,125 +286,60 @@ int main()
 
     // Vertex buffer
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    glBufferData(
-        GL_ARRAY_BUFFER,
-        sizeof(vertices),
-        vertices,
-        GL_STATIC_DRAW
-    );
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Element/index buffer
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-    glBufferData(
-        GL_ELEMENT_ARRAY_BUFFER,
-        sizeof(indices),
-        indices,
-        GL_STATIC_DRAW
-    );
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(
-        0,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        8 * sizeof(float),
-        (void*)0
-    );
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     // color attribute
-    glVertexAttribPointer(
-        1,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        8 * sizeof(float),
-        (void*)(3 * sizeof(float))
-    );
-
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
     // texture 
-    glVertexAttribPointer(
-        2,
-        2,
-        GL_FLOAT,
-        GL_FALSE,
-        8 * sizeof(float),
-        (void*)(6 * sizeof(float))
-    );
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
 
     shader.use();
     shader.setInt("texture2", 1);
+	shader.setInt("texture1", 0);
 
 
-
-    // going 3d
-    glm::mat4 model = glm::mat4(1.0f);
-    /*model = glm::rotate(model, glm::radians(-55.0f),
-        glm::vec3(1.0f, 0.0f, 0.0f));*/
-
-    // rotation
-    model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f),
-        glm::vec3(0.5f, 1.0f, 0.0f));
-
-    // view space
-    // glm::mat4 view = glm::mat4(1.0f);
-    //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-
-    // projection
-    glm::mat4 projection;
-    projection = glm::perspective(glm::radians(70.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-
-
-    unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-    unsigned int viewLoc = glGetUniformLocation(shader.ID, "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-
-    unsigned int projectionLoc = glGetUniformLocation(shader.ID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-    // z depth
-    glEnable(GL_DEPTH_TEST);
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
+
+        // delta time
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
         processInput(window);
+
+        glfwSetCursorPosCallback(window, mouse_callback);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // shader.use();
-        
-        // makes it move left to right and right to left and left to right and right to left and left to right and right to left and left to right and right to left
-        //float timeValue = glfwGetTime();
-
-        //shader.setFloat(
-        //    "xOffset",
-        //    sin(timeValue) * 0.5f
-        //);
-
         shader.use();
 
+        // camera/view transformation
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        shader.setMat4("projection", projection);
 
+        // camera/view transformation
+        glm::mat4 view = camera.GetViewMatrix();
+        shader.setMat4("view", view);
+
+        shader.setMat4("projection", projection);
         shader.setFloat("mixValue", mixValue);
 		shader.setMat4("view", view);
-
-        // trying transforms
-
-        /*glm::mat4 trans = glm::mat4(1.0f);
-        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
-        trans = glm::rotate(trans, (float)glfwGetTime(),glm::vec3(0.0f, 0.0f, 1.0f));
-
-        unsigned int transformLoc = glGetUniformLocation(shader.ID, "transform");
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));*/
 
 
         glActiveTexture(GL_TEXTURE0);
@@ -424,9 +348,6 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture2);
         glBindVertexArray(VAO);
         
-
-
-        //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         for (unsigned int i = 0; i < 10; i++)
         {
@@ -441,7 +362,6 @@ int main()
             glDrawArrays(GL_TRIANGLES, 0, 36);
 
         }
-       
 
         glfwSwapBuffers(window);
 
